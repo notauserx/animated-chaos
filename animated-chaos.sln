@@ -5,6 +5,12 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{73896BED-67D3-4A1C-A7DE-7FB43704B2BF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solution", "Solution\Solution.csproj", "{61EA7430-8402-4F82-A89A-413AF9C88C79}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1429644C-39EF-4F2C-B768-B6055B90AE2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solution.Tests", "Solution.Tests\Solution.Tests.csproj", "{C8756D87-348C-403A-8036-AACA7854DC1B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +21,20 @@ Global
 		{73896BED-67D3-4A1C-A7DE-7FB43704B2BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73896BED-67D3-4A1C-A7DE-7FB43704B2BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73896BED-67D3-4A1C-A7DE-7FB43704B2BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61EA7430-8402-4F82-A89A-413AF9C88C79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61EA7430-8402-4F82-A89A-413AF9C88C79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61EA7430-8402-4F82-A89A-413AF9C88C79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61EA7430-8402-4F82-A89A-413AF9C88C79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8756D87-348C-403A-8036-AACA7854DC1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8756D87-348C-403A-8036-AACA7854DC1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8756D87-348C-403A-8036-AACA7854DC1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8756D87-348C-403A-8036-AACA7854DC1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C8756D87-348C-403A-8036-AACA7854DC1B} = {1429644C-39EF-4F2C-B768-B6055B90AE2D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F30F367A-CE15-42C6-83EA-D2C58045369D}
