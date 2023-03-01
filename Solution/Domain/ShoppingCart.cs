@@ -4,6 +4,8 @@ public class ShoppingCart
 {
     public IList<Product> Products { get; private set; }
 
+    //public IShoppingCartDiscountStrategy? DiscountStrategy { get; private set; }
+
     private ShoppingCart()
     {
         Products = new List<Product>();
@@ -15,7 +17,7 @@ public class ShoppingCart
 
     public int GetNumberOfProducts() => Products.Count;
 
-    public static ShoppingCart CreateEmptyCart() => new ShoppingCart();
+    public static ShoppingCart CreateEmptyCart() => new();
 
     public decimal GetSumOfItems()
     {
@@ -32,9 +34,9 @@ public class Product
     // TODO :: implement as a value ofje
     public ProductQuantity Quantity { get; private set; }
 
-    public IDiscountStrategy DiscountStrategy { get; private set; }
+    public IProductDiscountStrategy DiscountStrategy { get; private set; }
 
-    public Product(ProductName name, ProductPrice price, ProductQuantity? quantity, IDiscountStrategy discountStrategy)
+    public Product(ProductName name, ProductPrice price, ProductQuantity? quantity, IProductDiscountStrategy discountStrategy)
     {
         Name = name;
         Price = price;
@@ -121,12 +123,12 @@ public class ProductQuantity : ValueObject
     }
 }
 
-public interface IDiscountStrategy
+public interface IProductDiscountStrategy
 {
     decimal GetDiscountedPrice(Product product);
 }
 
-public class ThreeForThePriceOfTwo : IDiscountStrategy
+public class ThreeForThePriceOfTwo : IProductDiscountStrategy
 {
     public decimal GetDiscountedPrice(Product product)
     {
@@ -134,5 +136,57 @@ public class ThreeForThePriceOfTwo : IDiscountStrategy
         var remainingItems = product.Quantity.Value - maxThreeItems * 3;
 
         return remainingItems * product.Price.Value + maxThreeItems * 2 * product.Price.Value;
+    }
+}
+
+public interface IShoppingCartDiscountStrategy
+{
+    bool IsApplicable(ShoppingCart cart);
+    decimal GetDiscountedPrice(ShoppingCart cart);
+}
+
+public class TwoTShirtAndTwoJeansDiscountStrategy : IShoppingCartDiscountStrategy
+{
+    public static ProductName TShirtProductName => new ProductName("T-Shirt");
+    public static ProductName JeansProductName => new ProductName("Jeans");
+    public decimal GetDiscountedPrice(ShoppingCart cart)
+    {
+        if(!IsApplicable(cart))
+        {
+            return cart.GetSumOfItems();
+        }
+
+        var tShirtPrice = cart.Products.First(x => x.Name == TShirtProductName).Price.Value;
+        var jeansPrice = cart.Products.First(x => x.Name == JeansProductName).Price.Value;
+
+        // get total tshirts and jeans
+        var totalTShirts = cart.Products.Count(p => p.Name == TShirtProductName);
+        var totalJeans = cart.Products.Count(p => p.Name == JeansProductName);
+
+        var twoTShirtGroup =    totalTShirts / 2;
+        var twoJeansGroup =     totalJeans / 2;
+
+        // the discount set would be the minimun of twoJeans grounp and two t-shirt group.
+        var discountSetCount = Math.Min(twoJeansGroup, twoTShirtGroup);
+
+        var discountedTShirtsCount    = discountSetCount * 2;
+        var nonDiscountedTShirtsCount = totalTShirts  - discountedTShirtsCount;
+
+        var discountedJeansCount    = discountSetCount * 2;
+        var nonDiscountedJeansCount = totalJeans    - discountedJeansCount;
+
+        // now calculate the discounted price
+        var tShirtPriceTotal = (discountedTShirtsCount * tShirtPrice) / 2 + nonDiscountedTShirtsCount * tShirtPrice;
+        var jeansPriceTotal = (discountedJeansCount * jeansPrice) / 2 + nonDiscountedJeansCount * jeansPrice;
+
+        return tShirtPriceTotal + jeansPriceTotal;
+    }
+
+    public bool IsApplicable(ShoppingCart cart)
+    {
+        var tShirtCount = cart.Products.Where(p => p.Name == TShirtProductName).Count(i => i.Quantity.Value);
+        var jeansCount  = cart.Products.Where(p => p.Name == JeansProductName).Count(i => i.Quantity.Value);
+
+        return tShirtCount >= 2 && jeansCount >= 2;
     }
 }
