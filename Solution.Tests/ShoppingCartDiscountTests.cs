@@ -24,7 +24,5 @@ public class ShoppingCartDiscountTests
         var discountedPrice = discountStrategy.GetDiscountedPrice(cart);
 
         Assert.Equal(30, discountedPrice);
-
-
     }
 }

@@ -15,8 +15,8 @@ public class TwoTShirtAndTwoJeansDiscountStrategy : IShoppingCartDiscountStrateg
         var jeansPrice = cart.Products.First(x => x.Name == JeansProductName).Price.Value;
 
         // get total tshirts and jeans
-        var totalTShirts = cart.Products.Count(p => p.Name == TShirtProductName);
-        var totalJeans = cart.Products.Count(p => p.Name == JeansProductName);
+        var totalTShirts = cart.Products.Where(p => p.Name == TShirtProductName).Sum(i => i.Quantity.Value);
+        var totalJeans = cart.Products.Where(p => p.Name == JeansProductName).Sum(i => i.Quantity.Value);
 
         var twoTShirtGroup =    totalTShirts / 2;
         var twoJeansGroup =     totalJeans / 2;
