@@ -184,8 +184,20 @@ public class TwoTShirtAndTwoJeansDiscountStrategy : IShoppingCartDiscountStrateg
 
     public bool IsApplicable(ShoppingCart cart)
     {
-        var tShirtCount = cart.Products.Where(p => p.Name == TShirtProductName).Count(i => i.Quantity.Value);
-        var jeansCount  = cart.Products.Where(p => p.Name == JeansProductName).Count(i => i.Quantity.Value);
+        var tShirtCount = 0;
+        var jeansCount = 0;
+
+        foreach (var cartProduct in cart.Products)
+        {
+            if (cartProduct.Name.Equals(TShirtProductName))
+            {
+                tShirtCount += cartProduct.Quantity.Value;
+            }
+            else if (cartProduct.Name.Equals(JeansProductName))
+            {
+                jeansCount += cartProduct.Quantity.Value;
+            }
+        }
 
         return tShirtCount >= 2 && jeansCount >= 2;
     }

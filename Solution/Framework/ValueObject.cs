@@ -2,6 +2,20 @@
 
 public abstract class ValueObject
 {
+    public static bool operator ==(ValueObject left, ValueObject right)
+    {
+        if (ReferenceEquals(left, null) ^ ReferenceEquals(right, null))
+        {
+            return false;
+        }
+        return ReferenceEquals(left, null) || left.Equals(right);
+    }
+
+    public static bool operator !=(ValueObject left, ValueObject right)
+    {
+        return !(left == right);
+    }
+
     protected static bool EqualOperator(ValueObject left, ValueObject right)
     {
         if (ReferenceEquals(left, null) ^ ReferenceEquals(right, null))

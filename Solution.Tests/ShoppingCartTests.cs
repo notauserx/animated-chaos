@@ -97,7 +97,7 @@ public class ShoppingCartDiscountTests
 
         var discountedPrice = discountStrategy.GetDiscountedPrice(cart);
 
-        Assert.Equal(45, discountedPrice);
+        Assert.Equal(30, discountedPrice);
 
 
     }
