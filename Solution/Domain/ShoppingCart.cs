@@ -4,8 +4,6 @@ public class ShoppingCart
 {
     public IList<Product> Products { get; private set; }
 
-    //public IShoppingCartDiscountStrategy? DiscountStrategy { get; private set; }
-
     private ShoppingCart()
     {
         Products = new List<Product>();
@@ -21,6 +19,6 @@ public class ShoppingCart
 
     public decimal GetSumOfItems()
     {
-        return Products.Sum(p => p.GetPriceWithDiscount());
+        return Products.Sum(p => p.GetTotalPrice());
     }
 }

@@ -20,8 +20,7 @@ public class ShoppingCartTests
 
         cart.StoreProduct(new Product(new ProductName("Product A"),
                                       ProductPrice.FromDecimal(1),
-                                      ProductQuantity.FromInt(1),
-                                      null));
+                                      ProductQuantity.FromInt(1)));
 
         currentProductCount++;
         Assert.Equal(currentProductCount, cart.GetNumberOfProducts());
@@ -34,42 +33,13 @@ public class ShoppingCartTests
 
         cart.StoreProduct(new Product(new ProductName("T-Shirt"),
                                       ProductPrice.FromDecimal(10),
-                                      ProductQuantity.FromInt(1),
-                                      null));
+                                      ProductQuantity.FromInt(1)));
 
         cart.StoreProduct(new Product(new ProductName("Jeans"),
                                      ProductPrice.FromDecimal(20),
-                                      ProductQuantity.FromInt(1),
-                                      null));
+                                      ProductQuantity.FromInt(1)));
 
         Assert.Equal(30, cart.GetSumOfItems());
 
     }
-
-    [Fact]
-    public void products_can_have_discounts()
-    {
-
-        var discountedProduct = new Product(new ProductName("Jeans"),
-                                     ProductPrice.FromDecimal(20),
-                                      ProductQuantity.FromInt(1),
-                                      new ThreeForThePriceOfTwo()
-                                );
-
-        Assert.True(discountedProduct.HasADiscount);
-    }
-
-    [Fact]
-    public void products_can_have_no_discounts()
-    {
-
-        var discountedProduct = new Product(new ProductName("Jeans"),
-                                     ProductPrice.FromDecimal(20),
-                                      ProductQuantity.FromInt(1),
-                                      null
-                                );
-
-        Assert.False(discountedProduct.HasADiscount);
-    }
-
 }

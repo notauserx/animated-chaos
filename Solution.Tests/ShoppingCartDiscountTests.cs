@@ -9,13 +9,11 @@ public class ShoppingCartDiscountTests
 
         cart.StoreProduct(new Product(new ProductName("T-Shirt"),
                                       ProductPrice.FromDecimal(10),
-                                      ProductQuantity.FromInt(1),
-                                      null));
+                                      ProductQuantity.FromInt(1)));
 
         cart.StoreProduct(new Product(new ProductName("Jeans"),
                                      ProductPrice.FromDecimal(20),
-                                      ProductQuantity.FromInt(2),
-                                      null));
+                                      ProductQuantity.FromInt(2)));
 
         var discountStrategy = new TwoTShirtAndTwoJeansDiscountStrategy();
 
@@ -36,13 +34,11 @@ public class ShoppingCartDiscountTests
 
         cart.StoreProduct(new Product(new ProductName("T-Shirt"),
                                       ProductPrice.FromDecimal(10),
-                                      ProductQuantity.FromInt(2),
-                                      null));
+                                      ProductQuantity.FromInt(2)));
 
         cart.StoreProduct(new Product(new ProductName("Jeans"),
                                      ProductPrice.FromDecimal(20),
-                                      ProductQuantity.FromInt(2),
-                                      null));
+                                      ProductQuantity.FromInt(2)));
 
         var discountStrategy = new TwoTShirtAndTwoJeansDiscountStrategy();
 
@@ -63,13 +59,11 @@ public class ShoppingCartDiscountTests
 
         cart.StoreProduct(new Product(new ProductName("T-Shirt"),
                                       ProductPrice.FromDecimal(10),
-                                      ProductQuantity.FromInt(3),
-                                      null));
+                                      ProductQuantity.FromInt(3)));
 
         cart.StoreProduct(new Product(new ProductName("Jeans"),
                                      ProductPrice.FromDecimal(20),
-                                      ProductQuantity.FromInt(3),
-                                      null));
+                                      ProductQuantity.FromInt(3)));
 
         var discountStrategy = new TwoTShirtAndTwoJeansDiscountStrategy();
 
@@ -95,13 +89,11 @@ public class ShoppingCartDiscountTests
 
         cart.StoreProduct(new Product(new ProductName("T-Shirt"),
                                       ProductPrice.FromDecimal(10),
-                                      ProductQuantity.FromInt(2 * setCount),
-                                      null));
+                                      ProductQuantity.FromInt(2 * setCount)));
 
         cart.StoreProduct(new Product(new ProductName("Jeans"),
                                      ProductPrice.FromDecimal(20),
-                                      ProductQuantity.FromInt(2 * setCount),
-                                      null));
+                                      ProductQuantity.FromInt(2 * setCount)));
 
         var discountStrategy = new TwoTShirtAndTwoJeansDiscountStrategy();
 

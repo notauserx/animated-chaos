@@ -1,6 +1,6 @@
 ﻿namespace Solution.Tests;
 
-public class ThreeForThePriceOfTwoDiscountTests
+public class ThreeForThePriceOfTwoTests
 {
     [Theory]
     [InlineData(1)]
@@ -8,15 +8,15 @@ public class ThreeForThePriceOfTwoDiscountTests
     public void when_less_than_three_items_discount_does_not_apply(int quantity)
     {
         var pricePerItem = 20;
-        var discountedProduct = new Product(new ProductName("Jeans"),
+        var product = new Product(new ProductName("Jeans"),
                                      ProductPrice.FromDecimal(pricePerItem),
-                                      ProductQuantity.FromInt(quantity),
-                                      new ThreeForThePriceOfTwo()
-                                );
+                                      ProductQuantity.FromInt(quantity));
+
+        var threeForTwoDiscountStrategy = new ThreeForThePriceOfTwo();
 
         var expected = pricePerItem * quantity;
 
-        Assert.Equal(expected, discountedProduct.GetPriceWithDiscount());
+        Assert.Equal(expected, threeForTwoDiscountStrategy.GetDiscountedPrice(product));
     }
 
     [Theory]
@@ -30,14 +30,11 @@ public class ThreeForThePriceOfTwoDiscountTests
         var multipleOfThree = quantity / 3;
         var discountedProduct = new Product(new ProductName("Jeans"),
                                      ProductPrice.FromDecimal(pricePerItem),
-                                      ProductQuantity.FromInt(quantity),
-                                      new ThreeForThePriceOfTwo()
-                                );
+                                      ProductQuantity.FromInt(quantity));
 
         var expected = pricePerItem * 2 * multipleOfThree;
-        var discountedPrice = discountedProduct.GetPriceWithDiscount();
 
-        Assert.Equal(expected, discountedPrice);
+        Assert.Equal(expected, new ThreeForThePriceOfTwo().GetDiscountedPrice(discountedProduct));
     }
 
     [Fact]
@@ -46,12 +43,10 @@ public class ThreeForThePriceOfTwoDiscountTests
         var pricePerItem = 20;
         var discountedProduct = new Product(new ProductName("Jeans"),
                                     ProductPrice.FromDecimal(pricePerItem),
-                                     ProductQuantity.FromInt(4),
-                                     new ThreeForThePriceOfTwo()
-                               );
+                                     ProductQuantity.FromInt(4));
 
         var expected = pricePerItem * 2 + pricePerItem;
-        var discountedPrice = discountedProduct.GetPriceWithDiscount();
+        var discountedPrice = new ThreeForThePriceOfTwo().GetDiscountedPrice(discountedProduct);
 
         Assert.Equal(expected, discountedPrice);
     }
@@ -62,12 +57,11 @@ public class ThreeForThePriceOfTwoDiscountTests
         var pricePerItem = 20;
         var discountedProduct = new Product(new ProductName("Jeans"),
                                     ProductPrice.FromDecimal(pricePerItem),
-                                     ProductQuantity.FromInt(5),
-                                     new ThreeForThePriceOfTwo()
+                                     ProductQuantity.FromInt(5)
                                );
 
         var expected = 2 * pricePerItem + pricePerItem + pricePerItem;
-        var discountedPrice = discountedProduct.GetPriceWithDiscount();
+        var discountedPrice = new ThreeForThePriceOfTwo().GetDiscountedPrice(discountedProduct);
 
         Assert.Equal(expected, discountedPrice);
     }
