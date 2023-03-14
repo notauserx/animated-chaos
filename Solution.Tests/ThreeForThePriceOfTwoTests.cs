@@ -9,8 +9,8 @@ public class ThreeForThePriceOfTwoTests
     {
         var pricePerItem = 20;
         var product = new Product(new ProductName("Jeans"),
-                                     ProductPrice.FromDecimal(pricePerItem),
-                                      ProductQuantity.FromInt(quantity));
+                                  ProductPrice.FromDecimal(pricePerItem),
+                                  ProductQuantity.FromInt(quantity));
 
         var threeForTwoDiscountStrategy = new ThreeForThePriceOfTwo();
 
@@ -29,8 +29,8 @@ public class ThreeForThePriceOfTwoTests
         var pricePerItem = 20;
         var multipleOfThree = quantity / 3;
         var discountedProduct = new Product(new ProductName("Jeans"),
-                                     ProductPrice.FromDecimal(pricePerItem),
-                                      ProductQuantity.FromInt(quantity));
+                                            ProductPrice.FromDecimal(pricePerItem),
+                                            ProductQuantity.FromInt(quantity));
 
         var expected = pricePerItem * 2 * multipleOfThree;
 
@@ -42,8 +42,8 @@ public class ThreeForThePriceOfTwoTests
     {
         var pricePerItem = 20;
         var discountedProduct = new Product(new ProductName("Jeans"),
-                                    ProductPrice.FromDecimal(pricePerItem),
-                                     ProductQuantity.FromInt(4));
+                                            ProductPrice.FromDecimal(pricePerItem),
+                                            ProductQuantity.FromInt(4));
 
         var expected = pricePerItem * 2 + pricePerItem;
         var discountedPrice = new ThreeForThePriceOfTwo().GetDiscountedPrice(discountedProduct);
@@ -56,9 +56,8 @@ public class ThreeForThePriceOfTwoTests
     {
         var pricePerItem = 20;
         var discountedProduct = new Product(new ProductName("Jeans"),
-                                    ProductPrice.FromDecimal(pricePerItem),
-                                     ProductQuantity.FromInt(5)
-                               );
+                                            ProductPrice.FromDecimal(pricePerItem),
+                                            ProductQuantity.FromInt(5));
 
         var expected = 2 * pricePerItem + pricePerItem + pricePerItem;
         var discountedPrice = new ThreeForThePriceOfTwo().GetDiscountedPrice(discountedProduct);

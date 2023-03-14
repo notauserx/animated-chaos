@@ -36,7 +36,7 @@ public class ShoppingCartTests
                                       ProductQuantity.FromInt(1)));
 
         cart.StoreProduct(new Product(new ProductName("Jeans"),
-                                     ProductPrice.FromDecimal(20),
+                                      ProductPrice.FromDecimal(20),
                                       ProductQuantity.FromInt(1)));
 
         Assert.Equal(30, cart.GetSumOfItems());
