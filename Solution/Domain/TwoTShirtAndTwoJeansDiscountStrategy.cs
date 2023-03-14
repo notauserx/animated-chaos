@@ -24,10 +24,12 @@ public class TwoTShirtAndTwoJeansDiscountStrategy : IShoppingCartDiscountStrateg
         // the discount set would be the minimun of twoJeans grounp and two t-shirt group.
         var discountSetCount = Math.Min(twoJeansGroup, twoTShirtGroup);
 
-        var discountedTShirtsCount    = discountSetCount * 2;
+        // for each set, a single t-shirt is discounted
+        var discountedTShirtsCount    = discountSetCount;
         var nonDiscountedTShirtsCount = totalTShirts  - discountedTShirtsCount;
 
-        var discountedJeansCount    = discountSetCount * 2;
+        // for each set, a single jeans is discounted
+        var discountedJeansCount    = discountSetCount;
         var nonDiscountedJeansCount = totalJeans    - discountedJeansCount;
 
         // now calculate the discounted price

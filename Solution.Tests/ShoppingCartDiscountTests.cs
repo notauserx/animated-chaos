@@ -46,8 +46,8 @@ public class ShoppingCartDiscountTests
 
         var discountedPrice = discountStrategy.GetDiscountedPrice(cart);
 
-        // setting discounted price for t - shirt 5HKD and jeans 10hkd
-        var expectedPrice = 2 * 5 + 2 * 10;
+        // setting original price for the first pair and the discounted price for the second pair
+        var expectedPrice = (1 * 10 + 1 * 20) + (1 * 5 + 1 * 10);
 
         Assert.Equal(expectedPrice, discountedPrice);
     }
@@ -71,8 +71,8 @@ public class ShoppingCartDiscountTests
 
         var discountedPrice = discountStrategy.GetDiscountedPrice(cart);
 
-        // setting discounted price for t - shirt 5HKD and jeans 10hkd for 2 t-shirts and 2-jeans
-        var expectedPrice = 2 * 5 + 2 * 10 + 1 * 10 + 1 * 20;
+        // setting discounted price only for the second pair
+        var expectedPrice = 1 * 5 + 1 * 10 + 2 * 10 + 2 * 20;
 
         Assert.Equal(expectedPrice, discountedPrice);
     }
@@ -101,8 +101,9 @@ public class ShoppingCartDiscountTests
 
         var discountedPrice = discountStrategy.GetDiscountedPrice(cart);
 
-        // setting discounted price for t - shirt 5HKD and jeans 10hkd for 2 t-shirts and 2-jeans
-        var expectedPrice = (2 * 5 * setCount) + (2 * 10 * setCount);
+        // setting original price for the first pair and the discounted price for the second pair for each pair
+        var expectedPricePerSet = (1 * 10) + (1 * 20) + (1 * 5) + (1 * 10);
+        var expectedPrice = expectedPricePerSet * setCount;
 
         Assert.Equal(expectedPrice, discountedPrice);
     }

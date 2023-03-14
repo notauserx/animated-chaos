@@ -36,4 +36,9 @@ I would like to discount each second set of jeans and t-shirt, setting
 discounted price for t-shirt 5HKD and jeans 10hkd
 So that my sales will increase
 
+2 t-shirts and 2 jeans are in the shopping cart
 
+the first  set of t-shirt and jeans are priced at 10HKD and 20 HKD respectively, while
+the second set of t-shirt and jeans are priced at  5HKD and 10 HKD with the discount applied.
+
+total: 45HKD
